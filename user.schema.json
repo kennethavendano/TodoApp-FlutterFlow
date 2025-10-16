@@ -1,0 +1,59 @@
+{
+  "$id": "https://example.com/schemas/user.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "users/{uid}",
+  "type": "object",
+  "description": "Schema for a user document in the Firestore `users` collection.",
+  "additionalProperties": false,
+  "required": [
+    "uid",
+    "display_name",
+    "email",
+    "photo_url",
+    "birthdate",
+    "created_time"
+  ],
+  "properties": {
+    "uid": {
+      "type": "string",
+      "description": "Firebase Authentication UID.",
+      "minLength": 28,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9_-]+$"
+    },
+    "display_name": {
+      "type": "string",
+      "description": "User's display name."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "User's email address."
+    },
+    "photo_url": {
+      "type": "string",
+      "description": "Profile photo URL stored in Firebase Storage or elsewhere.",
+      "pattern": "^(https?://|gs://).+"
+    },
+    "birthdate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "User's date of birth as an RFC 3339 timestamp."
+    },
+    "created_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the user document was created."
+    }
+  },
+  "examples": [
+    {
+      "uid": "5QJ30SbaohTD45Zb3DuijTbmKIxx",
+      "display_name": "Kenneth",
+      "email": "kenneth@uri.edu",
+      "photo_url": "https://firebasestorage.googleapis.com/v0/wyz",
+      "birthdate": "2005-05-28T00:00:00-04:00",
+      "created_time": "2025-10-10T05:55:17-04:00"
+    }
+  ]
+}
