@@ -1,0 +1,48 @@
+{
+  "$id": "https://example.com/schemas/task.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "tasks/{taskId}",
+  "type": "object",
+  "description": "Schema for a task document in the Firestore `tasks` collection.",
+  "additionalProperties": false,
+  "required": [
+    "title",
+    "details",
+    "completed",
+    "created",
+    "user"
+  ],
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Title of the task."
+    },
+    "details": {
+      "type": "string",
+      "description": "Description of what needs to be done."
+    },
+    "completed": {
+      "type": "boolean",
+      "description": "Whether the task has been completed."
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the task was created."
+    },
+    "user": {
+      "type": "string",
+      "description": "Firestore reference to the user document who owns this task.",
+      "pattern": "^/users/[A-Za-z0-9_-]+$"
+    }
+  },
+  "examples": [
+    {
+      "title": "walk the dog",
+      "details": "walk the dog for 30 minutes and make sure he uses the bathroom.",
+      "completed": true,
+      "created": "2025-10-10T10:05:53-04:00",
+      "user": "/users/DJEwXBO3dxfbPVHpfl6ZmqWpkJxx"
+    }
+  ]
+}
